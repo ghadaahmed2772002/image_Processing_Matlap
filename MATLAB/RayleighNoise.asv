@@ -1,0 +1,17 @@
+function image_noise = RayleighNoise(img,a, b) 
+        [h w l]=size(img);
+        for i = 1:255
+            pixels=round(((2/b)*(i-a)*(exp(((i-a).^2)/b)))*h*w);
+            for j = 1 :pixels
+                r=ceil(round(1,1)*h);
+                c=ceil(round(1,1)*w);
+                img(r,c)=img(r,c)+i;
+            end
+        end
+        result=contrast_stretcing(img);
+        result=uint8(result);
+        image_noise=uint8(result);
+
+end
+
+
